@@ -10,6 +10,7 @@ require 'sendgrid_toolkit/bounces'
 require 'sendgrid_toolkit/blocks'
 require 'sendgrid_toolkit/invalid_emails'
 require 'sendgrid_toolkit/mail'
+require 'sendgrid_toolkit/newsletter'
 
 module SendgridToolkit
   BASE_URI = "sendgrid.com/api"

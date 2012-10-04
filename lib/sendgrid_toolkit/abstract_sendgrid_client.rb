@@ -12,7 +12,12 @@ module SendgridToolkit
     protected
 
     def api_post(module_name, action_name, opts = {})
-      response = HTTParty.post("https://#{BASE_URI}/#{module_name}.#{action_name}.json?", :query => get_credentials.merge(opts), :format => :json)
+      api_req(:post, "#{module_name}.#{action_name}", opts)
+    end
+
+    def api_req(method, path, opts={})
+      url = "https://#{BASE_URI}/#{path}.json?"
+      response = HTTParty.send(method, url, :query => get_credentials.merge(opts), :format => :json)
       if response.code > 401
         raise(SendgridToolkit::SendgridServerError, "The sengrid server returned an error. #{response.inspect}")
       elsif has_error?(response) and
@@ -23,7 +28,7 @@ module SendgridToolkit
       elsif has_error?(response)
         raise(SendgridToolkit::APIError, response['error'])
       end
-      response
+      response      
     end
 
     def get_credentials
