@@ -30,7 +30,7 @@ module SendgridToolkit
           api_req(:get, 'newsletter/lists/email/get', options)
         end
         def delete(options={})
-          api_req(:delete, 'newsletter/lists/email/delete', options)
+          api_req(:post, 'newsletter/lists/email/delete', options)
         end
       end
     end
