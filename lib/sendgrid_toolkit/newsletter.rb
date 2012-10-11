@@ -11,7 +11,7 @@ module SendgridToolkit
       end
       
       def add(options={})
-        api_req(:post, 'newsletter/lists/add',options)
+        api_req(:get, 'newsletter/lists/add',options)
       end
       
       def edit(options={})
